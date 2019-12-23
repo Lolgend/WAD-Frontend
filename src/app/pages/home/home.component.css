@@ -1,0 +1,17 @@
+#shopnowbtn {
+    border: none;
+    padding: 7px 30px;
+    border-radius: 10px;
+    background-color: orange;
+    font-weight: 600;
+}
+
+#welcomebanner {
+    padding: 200px 0;
+    background-color: #343A40;
+}
+
+h1 {
+    color:white;
+    font-size: 3.7em;
+}
