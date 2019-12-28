@@ -1,9 +1,29 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
+import { Product } from "../pages/products/product.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+
+  productAdded = new EventEmitter<void>();
+
+  products: Product[] = [
+    new Product("Pixel 4 XL", "Pixel 4 is the phone made the Google way. Its camera takes the perfect shot every time, even when it’s dark outside. The Google Assistant helps you do things like control your phone with just your voice. Pixel 4 is also the first phone with Motion Sense, letting you use gestures to get things done without having to touch your phone. Best of all, it’s built around the Google software you know and love, which is always getting better.", "Google", 1119, "Phone", "https://fdn2.gsmarena.com/vv/bigpic/google-pixel-xl2-.jpg"),
+    new Product("Pixel 4 XL", "Pixel 4 is the phone made the Google way. Its camera takes the perfect shot every time, even when it’s dark outside. The Google Assistant helps you do things like control your phone with just your voice. Pixel 4 is also the first phone with Motion Sense, letting you use gestures to get things done without having to touch your phone. Best of all, it’s built around the Google software you know and love, which is always getting better.", "Google", 1119, "Phone", "https://fdn2.gsmarena.com/vv/bigpic/google-pixel-xl2-.jpg"),
+    new Product("Pixel 4 XL", "Pixel 4 is the phone made the Google way. Its camera takes the perfect shot every time, even when it’s dark outside. The Google Assistant helps you do things like control your phone with just your voice. Pixel 4 is also the first phone with Motion Sense, letting you use gestures to get things done without having to touch your phone. Best of all, it’s built around the Google software you know and love, which is always getting better.", "Google", 1119, "Phone", "https://fdn2.gsmarena.com/vv/bigpic/google-pixel-xl2-.jpg"),
+    new Product("Pixel 4 XL", "Pixel 4 is the phone made the Google way. Its camera takes the perfect shot every time, even when it’s dark outside. The Google Assistant helps you do things like control your phone with just your voice. Pixel 4 is also the first phone with Motion Sense, letting you use gestures to get things done without having to touch your phone. Best of all, it’s built around the Google software you know and love, which is always getting better.", "Google", 1119, "Phone", "https://fdn2.gsmarena.com/vv/bigpic/google-pixel-xl2-.jpg"),
+    new Product("Pixel 4 XL", "Pixel 4 is the phone made the Google way. Its camera takes the perfect shot every time, even when it’s dark outside. The Google Assistant helps you do things like control your phone with just your voice. Pixel 4 is also the first phone with Motion Sense, letting you use gestures to get things done without having to touch your phone. Best of all, it’s built around the Google software you know and love, which is always getting better.", "Google", 1119, "Phone", "https://fdn2.gsmarena.com/vv/bigpic/google-pixel-xl2-.jpg"),
+    new Product("Pixel 4 XL", "Pixel 4 is the phone made the Google way. Its camera takes the perfect shot every time, even when it’s dark outside. The Google Assistant helps you do things like control your phone with just your voice. Pixel 4 is also the first phone with Motion Sense, letting you use gestures to get things done without having to touch your phone. Best of all, it’s built around the Google software you know and love, which is always getting better.", "Google", 1119, "Phone", "https://fdn2.gsmarena.com/vv/bigpic/google-pixel-xl2-.jpg"),
+    new Product("Pixel 4 XL", "Pixel 4 is the phone made the Google way. Its camera takes the perfect shot every time, even when it’s dark outside. The Google Assistant helps you do things like control your phone with just your voice. Pixel 4 is also the first phone with Motion Sense, letting you use gestures to get things done without having to touch your phone. Best of all, it’s built around the Google software you know and love, which is always getting better.", "Google", 1119, "Phone", "https://fdn2.gsmarena.com/vv/bigpic/google-pixel-xl2-.jpg"),
+    new Product("Pixel 4 XL", "Pixel 4 is the phone made the Google way. Its camera takes the perfect shot every time, even when it’s dark outside. The Google Assistant helps you do things like control your phone with just your voice. Pixel 4 is also the first phone with Motion Sense, letting you use gestures to get things done without having to touch your phone. Best of all, it’s built around the Google software you know and love, which is always getting better.", "Google", 1119, "Phone", "https://fdn2.gsmarena.com/vv/bigpic/google-pixel-xl2-.jpg"),
+    new Product("Pixel 4 XL", "Pixel 4 is the phone made the Google way. Its camera takes the perfect shot every time, even when it’s dark outside. The Google Assistant helps you do things like control your phone with just your voice. Pixel 4 is also the first phone with Motion Sense, letting you use gestures to get things done without having to touch your phone. Best of all, it’s built around the Google software you know and love, which is always getting better.", "Google", 1119, "Phone", "https://fdn2.gsmarena.com/vv/bigpic/google-pixel-xl2-.jpg"),
+    new Product("Pixel 4 XL", "Pixel 4 is the phone made the Google way. Its camera takes the perfect shot every time, even when it’s dark outside. The Google Assistant helps you do things like control your phone with just your voice. Pixel 4 is also the first phone with Motion Sense, letting you use gestures to get things done without having to touch your phone. Best of all, it’s built around the Google software you know and love, which is always getting better.", "Google", 1119, "Phone", "https://fdn2.gsmarena.com/vv/bigpic/google-pixel-xl2-.jpg")
+  ]
+
+  getProducts() {
+    return this.products.slice();
+  }
 
   constructor() { }
 }
