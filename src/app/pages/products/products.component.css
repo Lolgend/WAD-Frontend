@@ -7,10 +7,16 @@
 }
 
 .productcards {
-  width: 90%; 
+  width: 74%; 
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
+app-productfilters {
+  margin: 75px auto 0;
+  padding-left: 3em;
+  padding-right: 5em;
+  float: left;  
+}
