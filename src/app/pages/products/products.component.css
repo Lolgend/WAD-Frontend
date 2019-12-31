@@ -14,9 +14,22 @@
   justify-content: flex-end;
 }
 
-app-productfilters {
+form {
   margin: 75px auto 0;
   padding-left: 3em;
   padding-right: 5em;
   float: left;  
+}
+
+#categoriesfilter, #brandfilter {
+  text-align: left;
+  font-size: 15px;
+}
+
+#categoriesfilter p, #brandfilter p {
+  margin-bottom: 3px; 
+}
+
+#brandfilter p {
+  margin-top: 20px;
 }
