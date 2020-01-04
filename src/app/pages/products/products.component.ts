@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from "./product.model";
 import { ProductService } from "../../services/product.service";
 import { CategoryService } from "../../services/category.service";
+import { Category } from './category.model';
 
 @Component({
   selector: 'app-products',
@@ -11,7 +12,8 @@ import { CategoryService } from "../../services/category.service";
 export class ProductsComponent implements OnInit {
 
   products: Product[] = [];
-  categories = [];
+  categories: Category[] = [];
+  categoryFilter = [];
 
   constructor(public productService: ProductService, public categoryService: CategoryService) { }
 
@@ -23,9 +25,9 @@ export class ProductsComponent implements OnInit {
 
   onCheckBoxChange(event, value) {
     if (event.target.checked) {
-      console.log("Checked " + event.target.value)
+      this.categoryFilter.push(event.target.value)
     } else if (!event.target.checked) {
-      console.log("Not checked " + event.target.value)
+      this.categoryFilter.splice(this.categoryFilter.indexOf(event.target.value), 1)
     }
   }
 }

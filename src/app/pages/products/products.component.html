@@ -55,7 +55,7 @@
     </div>
 </form>
 <div class="productcards">
-    <div *ngFor="let product of products" class="card">
+    <div *ngFor="let product of products | find:'category' :categoryFilter" class="card">
         <h3 class="card-header">{{ product.name }}</h3>
         <div class="card-body">
             <h4 class="card-title">${{ product.price }}</h4>
