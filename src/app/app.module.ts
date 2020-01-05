@@ -11,6 +11,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { FindPipe } from './find.pipe';
+import { HoverEffectsDirective } from './hover-effects.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FindPipe } from './find.pipe';
     ProductsComponent,
     ContactUsComponent,
     FooterComponent,
-    FindPipe
+    FindPipe,
+    HoverEffectsDirective
   ],
   imports: [
     BrowserModule,
