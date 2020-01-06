@@ -1,63 +1,66 @@
 <form>
     <div id="categoriesfilter">
         <p>Categories</p>
-        <div class="form-check" *ngFor = "let category of categories">
-            <input class="form-check-input" type="checkbox" value="{{category.name}}" id= "{{category.name}}" (change) = "onCheckBoxChange($event)">
-            <label  class="form-check-label" for="{{category.name}}">
+        <div class="form-check" *ngFor="let category of categories">
+            <input class="form-check-input" type="checkbox" value="{{category.name}}" id="{{category.name}}"
+                (change)="onCheckBoxChange($event)">
+            <label class="form-check-label" for="{{category.name}}">
                 {{ category.name }}
             </label>
         </div>
     </div>
-    <div id="brandfilter">
+    <div id="brandsfilter">
         <p>Brand</p>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                Default checkbox
+            <input class="form-check-input" type="checkbox" value="Google" id="Google"
+                (change)="onCheckBoxChange($event)">
+            <label class="form-check-label" for="Google">
+                Google
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                Default checkbox
+            <input class="form-check-input" type="checkbox" value="Microsoft" id="Microsoft"
+                (change)="onCheckBoxChange($event)">
+            <label class="form-check-label" for="Microsoft">
+                Microsoft
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                Default checkbox
+            <input class="form-check-input" type="checkbox" value="Apple" id="Apple"
+                (change)="onCheckBoxChange($event)">
+            <label class="form-check-label" for="Apple">
+                Apple
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                Default checkbox
+            <input class="form-check-input" type="checkbox" value="Samsung" id="Samsung"
+                (change)="onCheckBoxChange($event)">
+            <label class="form-check-label" for="Samsung">
+                Samsung
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                Default checkbox
+            <input class="form-check-input" type="checkbox" value="Razer" id="Razer"
+                (change)="onCheckBoxChange($event)">
+            <label class="form-check-label" for="Razer">
+                Razer
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                Default checkbox
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                Default checkbox
+            <input class="form-check-input" type="checkbox" value="Lenovo" id="Lenovo"
+                (change)="onCheckBoxChange($event)">
+            <label class="form-check-label" for="Lenovo">
+                Lenovo
             </label>
         </div>
     </div>
 </form>
 <div class="productcards">
-    <div [appHoverEffects] = "{background: '#F7F7F7', text: 'black'}" *ngFor="let product of products | find:'category' :categoryFilter" class="card">
+    <div [appHoverEffects]="{background: '#F7F7F7', text: 'black'}"
+        *ngFor="let product of products | find:'category' :categoryFilter | find:'brand' :brandFilter" class="card">
         <h3 class="card-header">{{ product.name }}</h3>
         <div class="card-body">
+            <img src='{{ product.imageURL }}'  height = 165>
             <h4 class="card-title">${{ product.price }}</h4>
             <a href="#!" class="btn btn-primary">Go somewhere</a>
         </div>

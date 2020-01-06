@@ -14,6 +14,7 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   categories: Category[] = [];
   categoryFilter = [];
+  brandFilter = [];
 
   constructor(public productService: ProductService, public categoryService: CategoryService) { }
 
@@ -24,10 +25,19 @@ export class ProductsComponent implements OnInit {
   }
 
   onCheckBoxChange(event, value) {
-    if (event.target.checked) {
-      this.categoryFilter.push(event.target.value)
-    } else if (!event.target.checked) {
-      this.categoryFilter.splice(this.categoryFilter.indexOf(event.target.value), 1)
+    if (event.path[2].id == 'categoriesfilter') {
+      if (event.target.checked) {
+        this.categoryFilter.push(event.target.value)
+      } else if (!event.target.checked) {
+        this.categoryFilter.splice(this.categoryFilter.indexOf(event.target.value), 1)
+      }
+    } else if (event.path[2].id == 'brandsfilter') {
+      if (event.target.checked) {
+        this.brandFilter.push(event.target.value)
+      } else if (!event.target.checked) {
+        this.brandFilter.splice(this.brandFilter.indexOf(event.target.value), 1)
+      }
     }
+
   }
 }
