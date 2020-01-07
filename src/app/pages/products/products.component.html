@@ -62,7 +62,7 @@
         <div class="card-body">
             <img src='{{ product.imageURL }}'  height = 165>
             <h4 class="card-title">${{ product.price }}</h4>
-            <a href="#!" class="btn btn-primary">Go somewhere</a>
+            <button (click) = "onViewDetail(product.product_id)" class="btn btn-primary">Go somewhere</button>
         </div>
     </div>
 </div>

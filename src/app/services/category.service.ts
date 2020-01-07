@@ -9,7 +9,7 @@ export class CategoryService {
   categories: Category[] = [
     new Category ('Laptop', 'Laptop is a laptop'),
     new Category ('Phone', 'Phone is a Phone'),
-    new Category ('Television', 'Television is a Television')
+    new Category ('Tablet', 'Tablet is a Tablet')
   ]
 
   getCategories() {

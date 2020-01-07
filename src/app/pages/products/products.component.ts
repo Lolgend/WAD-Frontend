@@ -3,6 +3,7 @@ import { Product } from "./product.model";
 import { ProductService } from "../../services/product.service";
 import { CategoryService } from "../../services/category.service";
 import { Category } from './category.model';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -16,7 +17,7 @@ export class ProductsComponent implements OnInit {
   categoryFilter = [];
   brandFilter = [];
 
-  constructor(public productService: ProductService, public categoryService: CategoryService) { }
+  constructor(public productService: ProductService, public categoryService: CategoryService, public router: Router) { }
 
   ngOnInit() {
     this.products = this.productService.getProducts();
@@ -39,5 +40,9 @@ export class ProductsComponent implements OnInit {
       }
     }
 
+  }
+
+  onViewDetail(product_id: number) {
+    this.router.navigate(['/product-detail', product_id]);
   }
 }
