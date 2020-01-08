@@ -1,9 +1,25 @@
-#description {
-    width: 40%;
-    margin: 0 auto;
+#features {
     text-align: left;
+    margin-left: 28.5em;
+    padding-top: 3em;    
+}
+
+#brand, #name {
+    margin-bottom: 5px;
+}
+
+#price {
+    margin-bottom: 35px;
 }
 
 img {
-    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
+    float: left;
+    clear: left;
+}
+
+.container {
+    width: 85%;
+    margin: 0 auto;
+    margin-bottom: 15em;
+    margin-top: 3em;
 }

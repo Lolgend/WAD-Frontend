@@ -56,13 +56,12 @@
     </div>
 </form>
 <div class="productcards">
-    <div [appHoverEffects]="{background: '#F7F7F7', text: 'black'}"
+    <a [routerLink]="" (click) = "onViewDetail(product.product_id)" [appHoverEffects]="{background: '#F7F7F7', text: 'black'}"
         *ngFor="let product of products | find:'category' :categoryFilter | find:'brand' :brandFilter" class="card">
-        <h3 class="card-header">{{ product.name }}</h3>
+        <h4 class="card-header">{{ product.name }}</h4>
         <div class="card-body">
             <img src='{{ product.imageURL }}'  height = 165>
             <h4 class="card-title">${{ product.price }}</h4>
-            <button (click) = "onViewDetail(product.product_id)" class="btn btn-primary">Go somewhere</button>
         </div>
-    </div>
+    </a>
 </div>
