@@ -11,7 +11,6 @@ export class FindPipe implements PipeTransform {
       return value;
     }
 
-    console.log('working')
     let resultArray = [];
     for (const elem of value) {
       for (const elem2 of searchStr) {

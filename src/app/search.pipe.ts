@@ -13,14 +13,12 @@ export class SearchPipe implements PipeTransform {
       for (let product of value) {
         let str = product[propertyName];
         str = str.toLowerCase();
-        console.log(str)
         if (str.indexOf(searchStr) != -1) { //found substring
           resultArr.push(product);
         }
       }
       return resultArr;
     } else {
-      console.log('unde')
       return value;
     }
 

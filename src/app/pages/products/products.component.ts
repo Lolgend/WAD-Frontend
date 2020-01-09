@@ -25,7 +25,6 @@ export class ProductsComponent implements OnInit {
     this.categories = this.categoryService.getCategories();
     this.route.params.subscribe(params => {
       this.searchTerm = params['searchTerm'];
-      console.log(this.searchTerm);
     });
   }
 
