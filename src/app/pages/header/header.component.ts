@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { CartService } from "../../services/cart.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  searchBar = new EventEmitter<string>();
+
+  amtOfProduct: number;
+
+  constructor(public cartService: CartService, public router: Router) { }
 
   ngOnInit() {
+    this.amtOfProduct = this.cartService.getCartAmount();
+    this.cartService.productAdded.subscribe(
+      () => {
+        this.amtOfProduct = this.cartService.getCartAmount();
+      }
+    )
   }
 
+  onSearch(searchTerm: string) {
+    this.searchBar.emit(searchTerm);
+    this.router.navigate(['/products', searchTerm]);
+  }
 }

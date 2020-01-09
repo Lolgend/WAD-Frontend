@@ -20,6 +20,11 @@ img {
 .container {
     width: 85%;
     margin: 0 auto;
-    margin-bottom: 15em;
-    margin-top: 3em;
+    margin-top: 7em;
+}
+
+#addtocartbtn {
+    margin-top: 10px;
+    border: 1.5px solid #ffc107;
+    font-weight: 600;
 }

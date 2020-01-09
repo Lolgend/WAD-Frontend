@@ -3,7 +3,7 @@ import { Product } from "./product.model";
 import { ProductService } from "../../services/product.service";
 import { CategoryService } from "../../services/category.service";
 import { Category } from './category.model';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -16,13 +16,17 @@ export class ProductsComponent implements OnInit {
   categories: Category[] = [];
   categoryFilter = [];
   brandFilter = [];
+  searchTerm: string;
 
-  constructor(public productService: ProductService, public categoryService: CategoryService, public router: Router) { }
+  constructor(public productService: ProductService, public categoryService: CategoryService, public router: Router, public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.products = this.productService.getProducts();
     this.categories = this.categoryService.getCategories();
-
+    this.route.params.subscribe(params => {
+      this.searchTerm = params['searchTerm'];
+      console.log(this.searchTerm);
+    });
   }
 
   onCheckBoxChange(event, value) {

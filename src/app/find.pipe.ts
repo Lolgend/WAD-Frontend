@@ -6,10 +6,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FindPipe implements PipeTransform {
 
-  transform(value: any, propertyName: string, searchStr: any[]): any {
-    if (value.length === 0 || searchStr.length === 0) {
+  transform(value: any, propertyName: string, searchStr: string): any {
+    if (value.length == 0 || searchStr.length == 0) {
       return value;
     }
+
+    console.log('working')
     let resultArray = [];
     for (const elem of value) {
       for (const elem2 of searchStr) {

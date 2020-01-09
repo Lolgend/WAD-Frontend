@@ -1,0 +1,59 @@
+.container {
+    width: 90%;
+    padding-bottom: 7em;
+}
+
+.information {
+    text-align: left;
+    margin-top: 25px;
+    margin-left: 175px;
+
+}
+
+.information p {
+    margin-bottom: 3px;
+}
+
+.price {
+    padding-top: 35px;
+}
+
+#image {
+    float: left;
+}
+
+#price {
+    float: right;
+    clear: left;
+}
+
+#itemheader {
+    text-align: left;
+    padding-left: 30px;
+    padding-right: -20px;
+}
+
+.products {
+    height: 200px;
+}
+
+h2 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: left;
+}
+
+#totalprice {
+    margin-top: 50px;
+    margin-bottom: 25px;
+    padding-right: 20px;
+    text-align: right;
+}
+
+#checkoutbtn {
+    margin-right: 20px;
+}
+
+div.summary {
+    text-align: right;
+}

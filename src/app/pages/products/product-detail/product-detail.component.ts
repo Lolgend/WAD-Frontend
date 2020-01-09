@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from "../product.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ProductService } from "../../../services/product.service";
+import { CartService } from "../../../services/cart.service";
 
 @Component({
   selector: 'app-product-detail',
@@ -12,19 +13,22 @@ export class ProductDetailComponent implements OnInit {
 
   selectedProduct: Product 
 
-  constructor(public route: ActivatedRoute, public productsService: ProductService, public router: Router) { }
+  constructor(public route: ActivatedRoute, public productsService: ProductService, public router: Router, public cartService: CartService) { }
 
   ngOnInit() {
     const product_id = this.route.snapshot.params['product_id'];
 
     const product = this.productsService.getProduct(product_id);
-    console.log
 
     if (product != undefined){
       this.selectedProduct = product
     } else {
       this.router.navigate(['/not-found'])
     }
+  }
+
+  addProductToCart(product) {
+    this.cartService.addProductsToCart(product);
   }
 
 }

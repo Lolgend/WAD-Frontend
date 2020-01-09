@@ -56,8 +56,8 @@
     </div>
 </form>
 <div class="productcards">
-    <a [routerLink]="" (click) = "onViewDetail(product.product_id)" [appHoverEffects]="{background: '#F7F7F7', text: 'black'}"
-        *ngFor="let product of products | find:'category' :categoryFilter | find:'brand' :brandFilter" class="card">
+    <a routerLink="" (click) = "onViewDetail(product.product_id)" [appHoverEffects]="{background: '#F7F7F7', text: 'black'}"
+        *ngFor="let product of products| search:'name' :searchTerm | find:'category' :categoryFilter | find:'brand' :brandFilter"  class="card">
         <h4 class="card-header">{{ product.name }}</h4>
         <div class="card-body">
             <img src='{{ product.imageURL }}'  height = 165>

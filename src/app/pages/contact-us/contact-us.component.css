@@ -1,5 +1,59 @@
 form {
-    width: 75%;
+    width: 80%;
     margin: 0 auto;
     margin-top: 75px;
+    text-align: left;
+    background-color: rgb(228, 228, 228);
+    padding: 4em 5em 5em;
+    border-radius: 25px;    
+}
+ 
+textarea {
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    color: #495057;
+    font-weight: 400;
+    line-height: 1.5;
+    border-radius: 10px;
+    border: none;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-control {
+    border-radius: 10px;    
+}
+
+label {
+    float: left;
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+h2 {
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.help-block {
+    color: red;
+}
+
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+    border: 1px red solid !important;
+}
+
+button {
+    border: 1.5px solid #28a745;
+    font-weight: 600;
+}
+
+.submitted {
+    padding: 35vh 0 10vh;
+}
+
+.fakelink {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
 }

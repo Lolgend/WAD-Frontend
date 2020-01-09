@@ -14,6 +14,8 @@ import { FindPipe } from './find.pipe';
 import { HoverEffectsDirective } from './hover-effects.directive';
 import { ProductDetailComponent } from './pages/products/product-detail/product-detail.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,9 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     FindPipe,
     HoverEffectsDirective,
     ProductDetailComponent,
-    NotFoundComponent
-  ],
+    NotFoundComponent,
+    CartComponent,
+    SearchPipe],
   imports: [
     BrowserModule,
     AppRoutingModule,
