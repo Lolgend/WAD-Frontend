@@ -12,6 +12,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+  margin-bottom: 150px;
 }
 
 a {
@@ -21,21 +22,48 @@ a {
 
 
 form {
+  width: 215px;
+  padding-left: 2em;
+  padding-right: 1em;
   margin: 75px auto 0;
-  padding-left: 5em;
-  padding-right: 4em;
   float: left;  
 }
 
-#categoriesfilter, #brandsfilter {
+#categoriesfilter, #brandsfilter, #pricefilter {
   text-align: left;
   font-size: 15px;
 }
 
-#categoriesfilter p, #brandsfilter p {
+#categoriesfilter, #brandfilter {
+  padding-bottom: 10px;
+}
+
+#categoriesfilter p, #brandsfilter p, #pricefilter {
   margin-bottom: 3px; 
 }
 
 #brandsfilter p {
   margin-top: 20px;
+}
+
+#categoriestitle, #brandtitle, #pricetitle {
+  font-weight: 600;
+}
+
+hr {
+  color: grey;
+}
+
+.priceinput {
+  width: 10px;
+  flex-grow: 5;
+}
+
+#pricerangegroup p {
+  flex-grow: 1;
+  text-align: center;
+}
+
+#pricerangegroup {
+  display: flex;
 }

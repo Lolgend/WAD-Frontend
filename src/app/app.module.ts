@@ -16,6 +16,7 @@ import { ProductDetailComponent } from './pages/products/product-detail/product-
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { SearchPipe } from './search.pipe';
+import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SearchPipe } from './search.pipe';
     ProductDetailComponent,
     NotFoundComponent,
     CartComponent,
-    SearchPipe],
+    SearchPipe,
+    AdminLoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

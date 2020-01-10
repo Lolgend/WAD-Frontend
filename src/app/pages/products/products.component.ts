@@ -17,6 +17,8 @@ export class ProductsComponent implements OnInit {
   categoryFilter = [];
   brandFilter = [];
   searchTerm: string;
+  minPrice: number;
+  maxPrice: number;
 
   constructor(public productService: ProductService, public categoryService: CategoryService, public router: Router, public route: ActivatedRoute) { }
 

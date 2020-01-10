@@ -1,0 +1,17 @@
+form {
+    text-align: left;
+    width: 30%;
+    margin: 0 auto;
+}
+
+h1 {
+    margin: 125px 0;
+}
+
+.help-block {
+    color: red;
+}
+
+input.ng-invalid.ng-touched {
+    border: 1px red solid !important;
+}

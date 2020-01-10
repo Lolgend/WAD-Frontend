@@ -1,6 +1,6 @@
 <form>
     <div id="categoriesfilter">
-        <p>Categories</p>
+        <p id="categoriestitle">Categories</p>
         <div class="form-check" *ngFor="let category of categories">
             <input class="form-check-input" type="checkbox" value="{{category.name}}" id="{{category.name}}"
                 (change)="onCheckBoxChange($event)">
@@ -9,8 +9,9 @@
             </label>
         </div>
     </div>
+    <hr>
     <div id="brandsfilter">
-        <p>Brand</p>
+        <p id="brandtitle">Brand</p>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="Google" id="Google"
                 (change)="onCheckBoxChange($event)">
@@ -56,11 +57,13 @@
     </div>
 </form>
 <div class="productcards">
-    <a routerLink="" (click) = "onViewDetail(product.product_id)" [appHoverEffects]="{background: '#F7F7F7', text: 'black'}"
-        *ngFor="let product of products| search:'name' :searchTerm | find:'category' :categoryFilter | find:'brand' :brandFilter"  class="card">
+    <a routerLink="" (click)="onViewDetail(product.product_id)"
+        [appHoverEffects]="{background: '#F7F7F7', text: 'black'}"
+        *ngFor="let product of products| search:'name' :searchTerm | find:'category' :categoryFilter | find:'brand' :brandFilter"  
+        class="card">
         <h4 class="card-header">{{ product.name }}</h4>
         <div class="card-body">
-            <img src='{{ product.imageURL }}'  height = 165>
+            <img src='{{ product.imageURL }}' height=165>
             <h4 class="card-title">${{ product.price }}</h4>
         </div>
     </a>

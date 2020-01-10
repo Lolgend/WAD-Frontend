@@ -7,6 +7,7 @@ import { ContactUsComponent } from "./pages/contact-us/contact-us.component";
 import { ProductDetailComponent } from "./pages/products/product-detail/product-detail.component";
 import { NotFoundComponent } from "./pages/not-found/not-found.component";
 import { CartComponent } from "./pages/cart/cart.component";
+import { AdminLoginComponent } from "./pages/admin-login/admin-login.component";
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'products/:searchTerm', component: ProductsComponent},
   {path: 'product-detail/:product_id', component: ProductDetailComponent},
   {path: 'cart', component: CartComponent},
+  {path: 'adminLogin', component: AdminLoginComponent},
   {path: 'contact-us', component: ContactUsComponent},
   {path: "not-found", component: NotFoundComponent},
   {path: "**", redirectTo: '/not-found'}

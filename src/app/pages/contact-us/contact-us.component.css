@@ -1,5 +1,5 @@
 form {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     margin-top: 75px;
     text-align: left;
@@ -56,4 +56,16 @@ button {
     color: blue;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.container {
+    margin-bottom: 150px;
+}
+
+h4 {
+    font-size: 40px;
+}
+
+div.submitted p {
+    font-size: 18px;
 }
