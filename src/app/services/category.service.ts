@@ -1,5 +1,11 @@
-import { Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Category } from "../pages/products/category.model";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { map } from "rxjs/operators";
+
+import { environment } from "../../environments/environment";
+
+const APIEndpoint = environment.APIEndpoint;
 
 @Injectable({
   providedIn: 'root'
@@ -7,16 +13,24 @@ import { Category } from "../pages/products/category.model";
 export class CategoryService {
 
   categories: Category[] = [
-    new Category ('Laptop', 'Laptop is a laptop'),
-    new Category ('Phone', 'Phone is a Phone'),
-    new Category ('Tablet', 'Tablet is a Tablet')
-  ]
+  ];
+
+  loadCategories() {
+    return this.httpClient.get<Category[]>
+      (`${APIEndpoint}/api/categories`)
+      .pipe(map((categories) => {
+        this.categories = categories;
+        return categories;
+      }, (error) => {
+        console.log("Error")
+      }));
+  };
 
   getCategories() {
     return this.categories.slice();
   }
 
-  constructor() { }
+  constructor(public httpClient: HttpClient) { }
 
-  
+
 }

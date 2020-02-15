@@ -1,0 +1,15 @@
+<div class="body">
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin', {outlets: {'admin': 'admin-products'}}]">Products</a>
+
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin', {outlets: {'admin': 'admin-enquiries'}}]">Enquiries</a>
+        </li>
+    </ul>
+
+    <router-outlet name="admin"></router-outlet>
+
+</div>

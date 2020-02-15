@@ -8,19 +8,30 @@ import { ProductDetailComponent } from "./pages/products/product-detail/product-
 import { NotFoundComponent } from "./pages/not-found/not-found.component";
 import { CartComponent } from "./pages/cart/cart.component";
 import { AdminLoginComponent } from "./pages/admin-login/admin-login.component";
-
+import { AdminComponent } from "./pages/admin/admin.component";
+import { AdminEnquiriesComponent } from "./pages/admin/admin-enquiries/admin-enquiries.component";
+import { AdminProductsComponent } from "./pages/admin/admin-products/admin-products.component";
+import { EditProductsComponent } from "./pages/admin/admin-products/edit-products/edit-products.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: "/home", pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'products', component: ProductsComponent},
-  {path: 'products/:searchTerm', component: ProductsComponent},
-  {path: 'product-detail/:product_id', component: ProductDetailComponent},
-  {path: 'cart', component: CartComponent},
-  {path: 'adminLogin', component: AdminLoginComponent},
-  {path: 'contact-us', component: ContactUsComponent},
-  {path: "not-found", component: NotFoundComponent},
-  {path: "**", redirectTo: '/not-found'}
+  { path: '', redirectTo: "/home", pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: 'products/:searchTerm', component: ProductsComponent },
+  { path: 'product-detail/:product_id', component: ProductDetailComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'adminLogin', component: AdminLoginComponent },
+  {
+    path: 'admin', component: AdminComponent,
+    children: [
+      { path: '', redirectTo: '/admin/(admin:admin-products)', pathMatch: 'full' },
+      { path: 'admin-enquiries', component: AdminEnquiriesComponent, outlet: 'admin' },
+      { path: 'admin-products', component: AdminProductsComponent, outlet: 'admin' },
+      { path: 'edit-product/:product_id', component: EditProductsComponent, outlet: 'admin' }]
+  },
+  { path: 'contact-us', component: ContactUsComponent },
+  { path: "not-found", component: NotFoundComponent },
+  { path: "**", redirectTo: '/not-found' }
 
 ];
 
@@ -28,6 +39,6 @@ const routes: Routes = [
   declarations: [],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  
+
 })
 export class AppRoutingModule { }

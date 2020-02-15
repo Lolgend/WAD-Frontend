@@ -1,44 +1,90 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Product } from "../pages/products/product.model";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { map } from "rxjs/operators";
+
+import { environment } from "../../environments/environment";
+
+const APIEndpoint = environment.APIEndpoint;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  products: Product[] = [
-    new Product(1, "Pixel 4 XL", "Pixel 4 is the phone made the Google way. Its camera takes the perfect shot every time, even when it’s dark outside. The Google Assistant helps you do things like control your phone with just your voice. Pixel 4 is also the first phone with Motion Sense, letting you use gestures to get things done without having to touch your phone. Best of all, it’s built around the Google software you know and love, which is always getting better.", "Google", 1119, "Phone", "https://cdn.hachi.tech/assets/images/product_images/a45c09875992c80dcf7b25797e4ead10.png"),
-    new Product(2, "Pixel 3a", "Pixel 3a is Google's Premium entry smartphone. The phone has Pixel's nightsight camera technology that takes pictures in dark without flash. Save your photos and videos with free unlimited storage in high quality with Google Photos. Pixel 3a's battery lasts up to 30 hours. Pixel’s Adaptive Battery learns your favourite apps and reduces power to those you rarely use. Pixel 3a also has fast charging feature. Enjoy up to 7 hours of use on a 15-minute charge with the 18 W adaptor included.", "Google", 659, "Phone", "https://cdn.hachi.tech/assets/images/product_images/9714959b5af1c370169553d901b346b3.png"),
-    new Product(3, "Pixel 3a XL", "Pixel 3a is Google's Premium entry smartphone. The phone has Pixel's nightsight camera technology that takes pictures in dark without flash. Save your photos and videos with free unlimited storage in high quality with Google Photos. Pixel 3a's battery lasts up to 30 hours. Pixel’s Adaptive Battery learns your favourite apps and reduces power to those you rarely use. Pixel 3a also has fast charging feature. Enjoy up to 7 hours of use on a 15-minute charge with the 18 W adaptor included.", "Google", 779, "Phone", "https://cdn.hachi.tech/assets/images/product_images/0dbc1088e0912ddd367d707f4b6852cb.png"),
-    new Product(4, "iPhone XS Max", "All-new Depth Control cameras let you adjust focus of the photo after you shoot Support dual SIM functionality Powerful A12 Bionic chip with next-generation Neural Engine Rated IP68 dust and water resistance * Please note that most of our products come in sealed boxes. However, certain import devices must be opened and activated by our suppliers before they can be sold internationally, and in those cases the device may not be sealed.", "Apple", 1629, "Phone", "https://cdn.hachi.tech/assets/images/product_images/073369baab14e14ed12fc11dc998b031.png"),
-    new Product(5, "iPhone 8", "iPhone 8 introduces an all‐new glass design. The world’s most popular camera, now even better. The smartest, most powerful chip ever in a smartphone. Wireless charging that’s truly effortless. And augmented reality experiences never before possible. iPhone 8. A new generation of iPhone.", "Apple", 899, "Phone", "https://cdn.hachi.tech/assets/images/product_images/c870e1e2550238d437c5660b7937265a.png"),
-    new Product(6, "Galaxy Note 10", "The Note 10 has a 6.3-inch AMOLED display with a Full HD resolution, coming in at 2280 x 1080 pixels, with 401 pixels per inch. It includes HDR10+ technology, and considering that Samsung hasn't opted for a QHD display here we're impressed with how the display looks.", "Samsung", 1398, "Phone", "https://cdn.hachi.tech/assets/images/product_images/fd85a6fb914785a8ee8a4d8589aaa6e8.jpg"),
-    new Product(7, "Surface Pro 7", "The Microsoft 12.3 Multi-Touch Surface Pro 7 combines the portability of a tablet with the performance of a laptop thanks to its 10th Gen Intel Core processor Wi-Fi 6 (802.1ax) connectivity and the USB Type-C port. Weighing just 1.74 pounds and measuring just 0.33 thin the Surface Pro 7 features a magnesium design with hidden perimeter venting. Use the multi-position Kickstand and the Surface Pro Type Cover (sold separately) to turn the Surface Pro into a laptop.", "Microsoft", 1388, 'Laptop', "https://cdn.hachi.tech/assets/images/product_images/337911a7e4e3cdd53755061444fd12cb.png"),
-    new Product(8, "MacBook Air", "The 13-inch MacBook Air features 8GB of memory, a fifth-generation Intel Core processor, Thunderbolt 2, great built-in apps and all-day battery life. It’s thin, light and durable enough to take everywhere you go — and powerful enough to do everything once you get there. ", "Apple", 1178, 'Laptop', "https://cdn.hachi.tech/assets/images/product_images/298f665a16e1692c0d8aaedcd89b7d71.png"),
-    new Product(9, "MacBook Pro", "MacBook Pro features a new quad-core Intel processor for up to 90 percent faster performance.A brilliant and colorful. Retina display with True Tone technology for a more comfortable viewing experience. Touch ID. The latest Apple-designed keyboard. And dynamic, contextual controls with Touch Bar. So you can take productivity to the next level.", "Apple", 2899, 'Laptop', "https://cdn.hachi.tech/assets/images/product_images/a66a42006323a088b6fb28ec0a14552b.jpg"),
-    new Product(10, "Razer Blade 15", "The new Razer Blade 15 (Select Advanced Model) is now available with the world’s first optical laptop switches in a gaming laptop. All models have options for the latest 6-Core Intel® Core™ processors and NVIDIA® GeForce RTX™ graphics, combined with ample memory and fast storage options. The Base Model features a Full HD display up to 144Hz, while the Advanced Model offers Full HD panels up to 240Hz or 4K Touch options, including a new OLED panel for vibrant colors and deep blacks. The precision crafted aluminum chassis is compact and durable, while remaining as thin as 0.70-inch in select models.", "Razer", 3839, 'Laptop', "https://cdn.hachi.tech/assets/images/product_images/6d2b68aa35ecf8bc0703c4e4bbc129d4.png"),
-    new Product(11, "ThinkPad 13s", "Designed for style, engineered for business The ThinkBook 13s features a sleek slim design with its mineral gray all-aluminum chassis and narrow bezel display. Log in or boot up in a flash thanks to the integrated fingerprint reader on the power button. This 13-inch laptop offers more than just good looks-it delivers speedy response times with its solid-state drive, default discrete graphics, and hot keys for Skype calls. What's more, it also boasts Dolby Audio with Harman speakers.", "Lenovo", 1749, 'Laptop', "https://cdn.hachi.tech/assets/images/product_images/8c7065d2b494aef0797927afcdcdae64.png"),
-    new Product(12, "ThinkPad E490s", "The ThinkPad E490s laptop boasts a sleek metallic design, two color options, and a narrow borderless display—all of which are sure to impress. What’s more, the durable construction and powerful performance with the latest Intel® CPUs, blazing-fast SSD options, and AMD discrete graphics make this the perfect choice for professionals on the go.", "Lenovo", 1689, 'Laptop', "https://cdn.hachi.tech/assets/images/product_images/9750a065735686f678d7e3c4a2c51921.png"),
-    new Product(13, "Tab A 8.0", "The Galaxy Tab A (8.0”)’s lightweight and compact design fits perfectly in the palm of your hand, so you can bring entertainment to life anywhere. Whether you’re travelling, commuting or relaxing at home, escape into the worlds of your favourite movies, shows and music on a wide and immersive screen.", "Samsung", 298, 'Tablet', "https://cdn.hachi.tech/assets/images/product_images/1b9b3b081e9ca302bf32508fe027fd1e.png"),
-    new Product(14, "Tab S6", "Take your creativity to new heights with Galaxy Tab S6, a do-it-all tablet that goes beyond boundaries with whole new levels of S Pen integration, for both work and play. Maximise your potential and turn every challenge into an opportunity with a tablet that prepares you for whatever life throws your way.", "Samsung", 998, 'Tablet', "https://cdn.hachi.tech/assets/images/product_images/b755027e0f1fff857564ab1097d80d42.png"),
-    new Product(15, "iPad Air 10.5", "iPad Air is thin, light and powerful. It features the A12 Bionic chip with Neural Engine, which uses real-time machine learning to transform the way you experience photos, gaming, augmented reality (AR) and more. A beautiful 10.5-inch Retina display with True Tone for easier viewing in all kinds of lighting environments. Support for Apple Pencil and the Smart Keyboard. An 8-megapixel back camera and 7-megapixel FaceTime HD camera. Touch ID and Apple Pay. And with all-day battery life, fast Wi-Fi and 4G LTE Advanced, and over a million iPad apps on the App Store, iPad Air is ready for any task, anywhere.", "Apple", 949, 'Tablet', "https://cdn.hachi.tech/assets/images/product_images/33e26a108ee48a5144775b62bd134cc8.png"),
-    new Product(16, "iPad Pro 12.9", "The new 12.9-inch iPad Pro features an advanced Liquid Retina display that goes edge to edge. Face ID, so you can securely unlock iPad Pro, log in to apps and pay with just a glance. The A12X Bionic chip is faster than most PC laptops and easily runs pro apps. All-day battery life. Wi-Fi and 4G LTE Advanced. Over a million apps available on the App Store, including augmented reality experiences. And the new Apple Pencil and Smart Keyboard Folio help you be even more creative and productive. It will make you rethink what iPad is capable of — and what a computer is capable of.", "Apple", 1719, 'Tablet', "https://cdn.hachi.tech/assets/images/product_images/ae3cd1ab3f7d1c853a716967a6ccfbe8.png"),
-    new Product(17, "MediaPad T5 10.1", "The HUAWEI MediaPad T5 is an eye-catching tablet with a premium, refined design. Its symmetrical metal body is crafted with care and is sleek and lightweight (about 460 g) enough to be conveniently portable and easy to hold.The HUAWEI MediaPad T5 comes with a stunning 10.1-inch display (1920 X 1200 resolution) that delivers excellent detail. The 16:10 aspect ratio makes it perfect for watching movies or TV shows and browsing websites.The octa-core processor with a main frequency of up to 2.36 GHz gives you great performance while consuming less power. Memory size can easily be expanded by up to 256 GB using a microSD card.", "Huawei", 298, 'Tablet', "https://cdn.hachi.tech/assets/images/product_images/00c76f005a2534cbe3ce695e6a1f9a9f.jpg"),
-    new Product(18, "MediaPad M5 Lite", "The Huawei Mediapad M5 Lite has an amazing 10.1-inch 1080p screen and powerful Harman Kardon tuned quad-speakers for the ultimate multimedia experience along with the M-Pen lite Stylus equipped with 2,048-layer pressure sensitive stylus to naturally write notes and memos.", "Huawei", 398, 'Tablet', "https://cdn.hachi.tech/assets/images/product_images/3592ec9808601e1d23d607af89ed5e00.jpg")
+  productListUpdated = new EventEmitter<void>();
+  products: Product[] = [];
 
-  ]
+  constructor(public httpClient: HttpClient) { }
+
+  loadProducts() {
+    return this.httpClient.get<Product[]>
+      (`${APIEndpoint}/api/products`)
+      .pipe(map((products) => {
+        this.products = products;
+        return products;
+      }, (error) => {
+        console.log("Error")
+      }));
+  };
 
   getProducts() {
     return this.products.slice();
   }
 
   getProduct(product_id: number) {
-    for (let product of this.products){
-      if(product.product_id == product_id){
+    for (let product of this.products) {
+      if (product.product_id == product_id) {
         return product
       }
     }
   }
 
-  constructor() { }
+  addProduct(newProduct) {
+    const httpHeaders = new HttpHeaders({
+      'Content-type': 'application/json',
+      'Cache-Control': 'no-cache'
+    });
+
+    const options = {
+      headers: httpHeaders
+    }
+
+    this.httpClient.post<Product>
+      (`${APIEndpoint}/api/friends`, { info: newProduct }, options)
+      .subscribe((respond) => {
+        this.products.push(respond);
+        this.productListUpdated.emit();
+      })
+  }
+
+  deleteProduct(product_id) {
+    this.httpClient.delete<{ success: boolean }>
+      (`${APIEndpoint}/api/products/${product_id}`)
+      .subscribe((respond) => {
+        if (respond.success) {
+          this.loadProducts().subscribe(() => {
+            this.productListUpdated.emit();
+          })
+        }
+      })
+  }
+
+  updateProduct(updateInfo: Product) {
+    const product_id = updateInfo.product_id;
+    delete updateInfo['product_id'];
+    return this.httpClient.put<{ success: boolean }>
+      (`${APIEndpoint}/api/products/${product_id}`, { info: updateInfo })
+      .pipe(map(
+        (result) => {
+          return (result.success == true);
+        },
+        (error) => {
+          console.log(error);
+          return false;
+        }
+      ));
+  }
+
+
 }

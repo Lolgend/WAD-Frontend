@@ -23,8 +23,14 @@ export class ProductsComponent implements OnInit {
   constructor(public productService: ProductService, public categoryService: CategoryService, public router: Router, public route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.products = this.productService.getProducts();
-    this.categories = this.categoryService.getCategories();
+    this.productService.loadProducts()
+      .subscribe((result) => {
+        this.products = this.productService.getProducts();
+      })
+      this.categoryService.loadCategories()
+      .subscribe((result) => {
+        this.categories = this.categoryService.getCategories();
+      })
     this.route.params.subscribe(params => {
       this.searchTerm = params['searchTerm'];
     });

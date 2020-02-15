@@ -1,0 +1,68 @@
+<h2>Edit Product Detail</h2>
+<form *ngIf="!submitted" [formGroup]="productDetail">
+    <div class="form-group">
+        <label>Name</label>
+        <input [formControlName]="'productName'" type="text" class="form-control" id="name" name="productname"
+            [(ngModel)]="name">
+        <span *ngIf="!productDetail.get('productName').valid && productDetail.get('productName').touched"
+            class="help-block">
+            <span class="help-block"
+                *ngIf="productDetail.get('productName').errors['required'] || productDetail.get('productName').errors['blankSpaces']">*This
+                field is
+                required</span>
+        </span>
+    </div>
+    <div class="form-group">
+        <label>Brand</label>
+        <input [formControlName]="'productBrand'" type="text" class="form-control" id="brand" name="productbrand"
+            [(ngModel)]="brand">
+        <span *ngIf="!productDetail.get('productBrand').valid && productDetail.get('productBrand').touched"
+            class="help-block">
+            <span class="help-block"
+                *ngIf="productDetail.get('productBrand').errors['required'] || productDetail.get('productBrand').errors['blankSpaces']">*This
+                field is
+                required</span>
+        </span>
+    </div>
+    <div class="form-group">
+        <label>Category </label>
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea [formControlName]="'productDescription'" type="text" class="form-control" id="description"
+            name="productdescription" [(ngModel)]="description"></textarea>
+        <span *ngIf="!productDetail.get('productDescription').valid && productDetail.get('productDescription').touched"
+            class="help-block">
+            <span class="help-block"
+                *ngIf="productDetail.get('productDescription').errors['required'] || productDetail.get('productDescription').errors['blankSpaces']">*This
+                field is
+                required</span>
+        </span>
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input [formControlName]="'productPrice'" type="number" class="form-control" id="price" name="productprice"
+            [(ngModel)]="price">
+        <span *ngIf="!productDetail.get('productPrice').valid && productDetail.get('productPrice').touched"
+            class="help-block">
+            <span class="help-block" *ngIf="productDetail.get('productPrice').errors['required']">*This
+                field is
+                required</span>
+        </span>
+    </div>
+    <div class="form-group">
+        <label>Image Source</label>
+        <input [formControlName]="'imageURL'" type="text" class="form-control" id="imagesource" name="imagesource"
+            [(ngModel)]="imageURL">
+        <span *ngIf="!productDetail.get('imageURL').valid && productDetail.get('imageURL').touched" class="help-block">
+            <span class="help-block"
+                *ngIf="productDetail.get('imageURL').errors['required'] || productDetail.get('imageURL').errors['blankSpaces']">*This
+                field is
+                required</span>
+        </span>
+    </div>
+    <button id="cancelBtn" routerLink="/admin" class="btn btn-outline-secondary float-right"
+        type="submit">Cancel</button>
+    <button id="saveBtn" [disabled]="!productDetail.valid" (click)="onSaveChanges();"
+        class="btn btn-outline-success float-right" type="submit">Save Changes</button>
+</form>

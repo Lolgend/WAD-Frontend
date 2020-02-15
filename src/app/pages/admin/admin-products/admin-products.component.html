@@ -1,0 +1,22 @@
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of productList">
+            <td>{{ product.product_id }}</td>
+            <td>
+                <p>{{ product.brand }} {{ product.name }}</p>
+            </td>
+            <td class="price">
+                <button type="button" class="btn btn-warning" (click)= "onViewProduct(product.product_id)">Edit</button>
+                <button type="button" class="btn btn-danger" (click) = "removeProduct(product.product_id)">Remove</button>
+            </td>
+
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,31 @@
+#description {
+    height: 250px;
+}
+
+label {
+    float: left;
+    margin-left: 8px;
+}
+
+h2, form {
+    width: 90%;
+    margin: 2em auto 0;
+    text-align: left;
+}
+
+.help-block {
+    color: red;
+}
+
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+    border: 1px red solid !important;
+}
+
+#cancelBtn {
+    margin-left: 1em;
+}
+
+#saveBtn, #cancelBtn {
+    margin-bottom: 4em;
+    margin-top: 2em;
+}

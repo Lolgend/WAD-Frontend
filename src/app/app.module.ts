@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
-import { ReactiveFormsModule } from "@angular/forms"
+import { ReactiveFormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,12 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { SearchPipe } from './search.pipe';
 import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
+import { HttpClientModule } from "@angular/common/http";
+import { AdminComponent } from './pages/admin/admin.component';
+import { AdminProductsComponent } from './pages/admin/admin-products/admin-products.component';
+import { AdminEnquiriesComponent } from './pages/admin/admin-enquiries/admin-enquiries.component';
+import { EditProductsComponent } from './pages/admin/admin-products/edit-products/edit-products.component';
+
 
 @NgModule({
   declarations: [
@@ -32,12 +39,18 @@ import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
     NotFoundComponent,
     CartComponent,
     SearchPipe,
-    AdminLoginComponent],
+    AdminLoginComponent,
+    AdminComponent,
+    AdminProductsComponent,
+    AdminEnquiriesComponent,
+    EditProductsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
