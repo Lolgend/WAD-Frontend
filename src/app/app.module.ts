@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { AuthService } from "./auth/auth.service";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,8 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { AdminProductsComponent } from './pages/admin/admin-products/admin-products.component';
 import { AdminEnquiriesComponent } from './pages/admin/admin-enquiries/admin-enquiries.component';
 import { EditProductsComponent } from './pages/admin/admin-products/edit-products/edit-products.component';
+import { EnquiriesDetailComponent } from './pages/admin/admin-enquiries/enquiries-detail/enquiries-detail.component';
+import { AdminAddProductComponent } from './pages/admin/admin-add-product/admin-add-product.component';
 
 
 @NgModule({
@@ -43,7 +46,9 @@ import { EditProductsComponent } from './pages/admin/admin-products/edit-product
     AdminComponent,
     AdminProductsComponent,
     AdminEnquiriesComponent,
-    EditProductsComponent],
+    EditProductsComponent,
+    EnquiriesDetailComponent,
+    AdminAddProductComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -52,7 +57,7 @@ import { EditProductsComponent } from './pages/admin/admin-products/edit-product
     HttpClientModule,
     CommonModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

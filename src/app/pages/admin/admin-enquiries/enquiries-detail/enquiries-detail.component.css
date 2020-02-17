@@ -1,0 +1,53 @@
+#information, #message {
+    text-align: left;
+    margin-top: 2em;
+    font-size: 17px;
+}
+
+#ticketno {
+    text-align: left;
+}
+
+.ticket {
+    width: 90%;
+    margin: 4em auto 4em;
+    border-radius: 25px;
+    background-color: rgb(228, 228, 228);
+    padding: 4em 5em 5em;
+    text-align: left;
+}
+
+#messagecontent, #responsemessagecontent {
+    background-color: white;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 10px;
+    border-radius: 10px;
+}
+
+#responsemessage {
+    font-size: 17px;
+}
+
+
+.btn-secondary, .btn-info {
+    margin-right: 10px;
+}
+
+textarea {
+    height: 250px;
+    border-radius: 10px;
+}
+
+form {
+    text-align: left;
+    font-size: 17px;
+}
+
+.help-block {
+    color: red;
+}
+
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+    border: 1px red solid !important;
+}

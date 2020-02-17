@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Product } from "../pages/products/product.model";
+import { Product } from "../models/product.model";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map } from "rxjs/operators";
 
@@ -51,7 +51,7 @@ export class ProductService {
     }
 
     this.httpClient.post<Product>
-      (`${APIEndpoint}/api/friends`, { info: newProduct }, options)
+      (`${APIEndpoint}/api/products`, { info: newProduct }, options)
       .subscribe((respond) => {
         this.products.push(respond);
         this.productListUpdated.emit();

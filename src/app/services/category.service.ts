@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Category } from "../pages/products/category.model";
+import { Category } from "../models/category.model";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map } from "rxjs/operators";
 

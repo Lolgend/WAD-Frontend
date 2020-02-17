@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from "../../../products/product.model";
-import { Category } from "../../../products/category.model";
+import { Product } from "../../../../models/product.model";
+import { Category } from "../../../../models/category.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ProductService } from "../../../../services/product.service";
 import { CategoryService } from "../../../../services/category.service";
@@ -20,7 +20,6 @@ export class EditProductsComponent implements OnInit {
   price: number;
   imageURL: string = "";
   productDetail: FormGroup;
-  submitted: boolean = false;
   categories: Category[] = [];
 
   constructor(public route: ActivatedRoute, public router: Router, public productsService: ProductService, public categoryService: CategoryService) { }
@@ -28,7 +27,11 @@ export class EditProductsComponent implements OnInit {
   ngOnInit() {
     const product_id = this.route.snapshot.params['product_id'];
     const product = this.productsService.getProduct(product_id);
-    this.categories = this.categoryService.getCategories();
+
+    this.categoryService.loadCategories()
+      .subscribe((result) => {
+        this.categories = this.categoryService.getCategories();
+      });
 
     if (product != undefined) {
       this.selectedProduct = product;
@@ -57,13 +60,13 @@ export class EditProductsComponent implements OnInit {
     return null;
   }
 
-  onSaveChanges() {
-    let productInfo = new Product(this.selectedProduct.product_id, this.name, this.description, this.brand, this.price, this.selectedProduct.category, this.imageURL);
+  onSaveChanges(name, description, brand, price, category, imageURL) {
+    let productInfo = new Product(this.selectedProduct.product_id, name, description, brand, price, category, imageURL);
     this.productsService.updateProduct(productInfo).subscribe(
       (success) => {
-        this.submitted = true;
         if (success) {
           alert("Product Updated");
+          this.router.navigate(['/admin']);
         } else {
           alert("Update Failed, Please Try Again");
         }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn } from "@angular/forms";
+import { EnquiryService } from "../../services/enquiry.service";
+import { Enquiry } from 'src/app/models/enquiry.model';
 
 @Component({
   selector: 'app-contact-us',
@@ -11,10 +13,10 @@ export class ContactUsComponent implements OnInit {
   submitted: boolean = false;
   contactForm: FormGroup;
 
-  constructor() { }
+  constructor(public enquiryService: EnquiryService) { }
 
   ngOnInit() {
-    this.contactForm = new FormGroup ({
+    this.contactForm = new FormGroup({
       fullname: new FormControl(null, [Validators.required, this.blankSpaces]),
       email: new FormControl(null, [Validators.required, this.blankSpaces, Validators.email]),
       category: new FormControl(null, [Validators.required]),
@@ -29,8 +31,11 @@ export class ContactUsComponent implements OnInit {
     return null;
   }
 
-  onSubmit() {
+  onSubmit(name: string, email: string, category: string, message: string) {
     this.submitted = true;
+    this.enquiryService.addEnquiry(
+      new Enquiry(0, name, email, category, message, "UNREAD", null)
+    );
   }
 
   onReset() {

@@ -1,0 +1,37 @@
+<div class="ticket">
+    <h2 id="ticketno">Ticket No: {{ selectedEnquiry.enquiry_id }}</h2>
+
+    <div id="information">
+        <p><b>Name:</b> {{ selectedEnquiry.full_name }}</p>
+        <p><b>Email:</b> {{ selectedEnquiry.email }}</p>
+        <p><b>Category:</b> {{ selectedEnquiry.category }}</p>
+    </div>
+    <div id="message">
+        <p><b>Message</b>:</p>
+        <p id="messagecontent">{{ selectedEnquiry.message }}</p>
+    </div>
+    <div *ngIf="submitted" id="responsemessage">
+        <p><b>Response:</b></p>
+        <p id="responsemessagecontent">{{ response }}</p>
+    </div>
+    <form *ngIf="!submitted" [formGroup]="contactForm">
+        <div class="form-group">
+            <label for="response"><b>Response:</b></label>
+            <textarea type="text" class="form-control" id="response" [formControlName]="'response'"
+                placeholder="Send a message" [(ngModel)] = "response"></textarea>
+        </div>
+        <span *ngIf="!contactForm.get('response').valid && contactForm.get('response').touched" class="help-block">
+            <span class="help-block"
+                *ngIf="contactForm.get('response').errors['required'] || contactForm.get('response').errors['blankSpaces']">*This
+                field is
+                required</span>
+        </span>
+    </form>
+    <button *ngIf="contactForm.valid && !submitted" type="button" class="btn btn-success float-right" (click) = "sendResponse()">Send</button>
+    <button type="button" class="btn btn-info float-right" (click)="markUnread(selectedEnquiry.enquiry_id)">Mark as
+        Unread</button>
+    <button type="button" class="btn btn-secondary float-right"
+        [routerLink]="['/admin', {outlets: {'admin': 'admin-enquiries'}}]">Back</button>
+
+
+</div>

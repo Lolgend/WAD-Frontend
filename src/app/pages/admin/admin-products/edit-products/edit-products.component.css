@@ -22,7 +22,7 @@ input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
 }
 
 #cancelBtn {
-    margin-left: 1em;
+    margin-left: 10px;
 }
 
 #saveBtn, #cancelBtn {

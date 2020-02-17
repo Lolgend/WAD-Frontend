@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { CartService } from "../../services/cart.service";
 import { Router } from "@angular/router";
+import { AuthService } from "../../auth/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
 
   amtOfProduct: number;
 
-  constructor(public cartService: CartService, public router: Router) { }
+  constructor(public cartService: CartService, public router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.amtOfProduct = this.cartService.getCartAmount();
@@ -27,5 +28,9 @@ export class HeaderComponent implements OnInit {
   onSearch(searchTerm: string) {
     this.searchBar.emit(searchTerm);
     this.router.navigate(['/products', searchTerm]);
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 }

@@ -1,1 +1,28 @@
-<p>admin-enquiries works!</p>
+<select class="custom-select" [(ngModel)]="categoryFilter">
+    <option value="" selected>All</option>
+    <option value="Order">Order</option>
+    <option value="After Sales">After Sales</option>
+    <option value="General Queries">General Queries</option>
+    <option value="Others">Others</option>
+</select>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Ticket No.</th>
+            <th>Customer</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let enquiry of enquiryList | search:'category' :categoryFilter">
+            <td>{{ enquiry.enquiry_id }}</td>
+            <td>{{ enquiry.email }}</td>
+            <td>{{ enquiry.category }}</td>
+            <td>{{ enquiry.status }}</td>
+            <td><a href="javascript:void(0);" (click)="onViewEnquiry(enquiry.enquiry_id)">View</a>
+                <a id="deletebutton" href="javascript:void(0);" (click)="deleteEnquiry(enquiry.enquiry_id)">Delete</a></td>
+        </tr>
+    </tbody>
+</table>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn } from "@angular/forms";
+import { AuthService } from "../../auth/auth.service";
 
 @Component({
   selector: 'app-admin-login',
@@ -10,7 +11,7 @@ export class AdminLoginComponent implements OnInit {
 
   contactForm: FormGroup;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.contactForm = new FormGroup({
@@ -24,5 +25,9 @@ export class AdminLoginComponent implements OnInit {
       return { blankSpaces: true };
     }
     return null;
+  }
+
+  onLogin(username: HTMLInputElement, password: HTMLInputElement) {
+    this.authService.login(username.value, password.value);
   }
 }
